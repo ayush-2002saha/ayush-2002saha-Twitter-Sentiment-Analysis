@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twitter Sentiment Analysis</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Twitter Sentiment Analysis</h1>
+        <form id="tweet-form">
+            <textarea id="tweet-input" placeholder="Enter tweet..." required></textarea>
+            <button type="submit">Analyze Sentiment</button>
+        </form>
+
+        <div id="result"></div>
+    </div>
+
+    <script>
+        document.getElementById('tweet-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const tweet = document.getElementById('tweet-input').value;
+            const response = await fetch('/predict', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ tweet }),
+            });
+            const data = await response.json();
+            document.getElementById('result').innerText = `Sentiment: ${data.sentiment}`;
+        });
+    </script>
+</body>
+</html>
