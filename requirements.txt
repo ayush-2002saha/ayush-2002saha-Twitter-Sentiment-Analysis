@@ -39,3 +39,10 @@ urllib3==1.26.8
 wasabi==0.9.0
 wordcloud==1.8.1
 gunicorn==20.1.0
+setuptools>=56.0
+wheel>=0.36.0
+build
+psycopg2-binary==2.9.3  # If using PostgreSQL
+flask==2.1.0  # If using Flask (remove if you're using Django)
+django==4.0.2  # If using Django (remove if you're using Flask)
+python-dotenv==0.19.2  # If using environment variables
